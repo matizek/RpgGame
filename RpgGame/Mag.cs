@@ -5,11 +5,11 @@ namespace RpgGame
     class Mag : Hero
     {
 
-        private string Name { get; set; }
+        private string _name { get; set; }
         private int _realVitality;
-        private int MaxVitality { get; set; }
-        private int Force { get; set; }
-        private int MagicPoints { get; set; }
+        private int _maxVitality { get; set; }
+        private int _force { get; set; }
+        private int _magicPoints { get; set; }
 
         public int RealVitality
         {
@@ -20,21 +20,21 @@ namespace RpgGame
 
         public Mag(string name, int vitality, int force, int magicPoints, int maxVitality)
         {
-            Name = name;
+            _name = name;
             RealVitality = vitality;
-            Force = force;
-            MagicPoints = magicPoints;
-            MaxVitality = maxVitality;
+            _force = force;
+            _magicPoints = magicPoints;
+            _maxVitality = maxVitality;
         }
 
         public Mag()
         {
-            Name = "Xardas";
+            _name = "Xardas";
             RealVitality = 100;
-            MaxVitality = 100;
+            _maxVitality = 100;
             Random rdn = new Random();
-            Force = rdn.Next(1, 6);
-            MagicPoints = rdn.Next(2, 12);
+            _force = rdn.Next(1, 6);
+            _magicPoints = rdn.Next(2, 12);
         }
 
 
@@ -59,9 +59,9 @@ namespace RpgGame
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Healed: +" + healedHp);
             RealVitality += healedHp;
-            if (RealVitality > MaxVitality)
+            if (RealVitality > _maxVitality)
             {
-                RealVitality = MaxVitality;
+                RealVitality = _maxVitality;
             }
 
             return RealVitality;
@@ -71,19 +71,19 @@ namespace RpgGame
         {
             double attack = 0;
 
-            attack = (MagicPoints + Force) * MaxVitality;
+            attack = (_magicPoints + _force) * _maxVitality;
           //  Console.WriteLine($"attack Power: {attack}");
             return attack;
         }
 
         public override string ToString()
         {
-            return $"{nameof(Name)}: {Name}, {nameof(RealVitality)}: {RealVitality}, {nameof(MaxVitality)}: {MaxVitality}, {nameof(Force)}: {Force}, {nameof(MagicPoints)}: {MagicPoints}";
+            return $"{nameof(_name)}: {_name}, {nameof(RealVitality)}: {RealVitality}, {nameof(_maxVitality)}: {_maxVitality}, {nameof(_force)}: {_force}, {nameof(_magicPoints)}: {_magicPoints}";
         }
         public string HeroInfo()
         {
             Console.WriteLine("Attack Power: " + AttackPower());
-            return $"{nameof(Name)}: {Name}, {nameof(RealVitality)}: {RealVitality}, {nameof(MaxVitality)}: {MaxVitality}, {nameof(Force)}: {Force}, {nameof(MagicPoints)}: {MagicPoints}";
+            return $"{nameof(_name)}: {_name}, {nameof(RealVitality)}: {RealVitality}, {nameof(_maxVitality)}: {_maxVitality}, {nameof(_force)}: {_force}, {nameof(_magicPoints)}: {_magicPoints}";
         }
     }
 }

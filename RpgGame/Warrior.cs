@@ -5,10 +5,10 @@ namespace RpgGame
 {
     class Warrior : Hero
     {
-        private string Name { get; set; }
+        private string _name { get; set; }
         private int _realVitality;
-        private int MaxVitality { get; set; }
-        private int Force { get; set; }
+        private int _maxVitality { get; set; }
+        private int _force { get; set; }
 
         public int RealVitality
         {
@@ -19,18 +19,18 @@ namespace RpgGame
 
         public Warrior(string name, int vitality, int force, int maxVitality)
         {
-            Name = name;
+            _name = name;
             RealVitality = vitality;
-            Force = force;
-            MaxVitality = maxVitality;
+            _force = force;
+            _maxVitality = maxVitality;
         }
         public Warrior()
         {
-            Name = "Gerald";
+            _name = "Gerald";
             RealVitality = 150;
-            MaxVitality = 150;
+            _maxVitality = 150;
             Random rdn = new Random();
-            Force = rdn.Next(3, 18);
+            _force = rdn.Next(3, 18);
         }
 
         public override int Injury(int lostHp)
@@ -53,9 +53,9 @@ namespace RpgGame
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Healed: +" + healedHp);
             RealVitality += healedHp;
-            if (RealVitality > MaxVitality)
+            if (RealVitality > _maxVitality)
             {
-                RealVitality = MaxVitality;
+                RealVitality = _maxVitality;
             }
 
             return RealVitality;
@@ -64,14 +64,14 @@ namespace RpgGame
         public override double AttackPower()
         {
             double attack =0;
-            if (RealVitality < 0.1 * MaxVitality)
+            if (RealVitality < 0.1 * _maxVitality)
             {
-                attack = Force * MaxVitality * 1.5;
+                attack = _force * _maxVitality * 1.5;
                 Console.ForegroundColor = ConsoleColor.Blue;
             }
             else
             {
-                attack = Force * MaxVitality;
+                attack = _force * _maxVitality;
             }
 
             return attack;
@@ -81,12 +81,12 @@ namespace RpgGame
         public override string ToString()
         {
             
-            return $"{nameof(Name)}: {Name}, {nameof(RealVitality)}: {RealVitality}, {nameof(MaxVitality)}: {MaxVitality}, {nameof(Force)}: {Force}";
+            return $"{nameof(_name)}: {_name}, {nameof(RealVitality)}: {RealVitality}, {nameof(_maxVitality)}: {_maxVitality}, {nameof(_force)}: {_force}";
         }
         public string HeroInfo()
         {
             Console.WriteLine("Attack Power: " + AttackPower());
-            return $"{nameof(Name)}: {Name}, {nameof(RealVitality)}: {RealVitality}, {nameof(MaxVitality)}: {MaxVitality}, {nameof(Force)}: {Force}";
+            return $"{nameof(_name)}: {_name}, {nameof(RealVitality)}: {RealVitality}, {nameof(_maxVitality)}: {_maxVitality}, {nameof(_force)}: {_force}";
         }
     }
 }
