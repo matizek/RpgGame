@@ -61,30 +61,31 @@ namespace RpgGame
             return RealVitality;
         }
 
-        public override void AttackPower()
+        public override double AttackPower()
         {
-            double Attack =0;
+            double attack =0;
             if (RealVitality < 0.1 * MaxVitality)
             {
-                Attack = Force * MaxVitality * 1.5;
+                attack = Force * MaxVitality * 1.5;
                 Console.ForegroundColor = ConsoleColor.Blue;
-                Console.WriteLine("-------------------------------");
-                Console.WriteLine("LOW HP: SPECIAL BONUS - Attack Power");
-                Console.WriteLine($"Attack Power: {Attack}");
-                Console.WriteLine("-------------------------------");
             }
             else
             {
-                Attack = Force * MaxVitality;
-                Console.WriteLine($"Attack Power: {Attack}");
+                attack = Force * MaxVitality;
             }
 
-      
+            return attack;
+
         }
 
         public override string ToString()
         {
-            AttackPower();
+            
+            return $"{nameof(Name)}: {Name}, {nameof(RealVitality)}: {RealVitality}, {nameof(MaxVitality)}: {MaxVitality}, {nameof(Force)}: {Force}";
+        }
+        public string HeroInfo()
+        {
+            Console.WriteLine("Attack Power: " + AttackPower());
             return $"{nameof(Name)}: {Name}, {nameof(RealVitality)}: {RealVitality}, {nameof(MaxVitality)}: {MaxVitality}, {nameof(Force)}: {Force}";
         }
     }
